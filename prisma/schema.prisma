@@ -1,0 +1,111 @@
+// Mass Transport Ticketing System — data model
+// Dev uses SQLite for zero-config. SQLite does not support Prisma `enum` types,
+// so enumerated fields are modelled as String columns; the allowed values are
+// defined as TypeScript unions in lib/enums.ts. To switch to PostgreSQL/MySQL,
+// change the provider below (you may then promote these to real enums).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(cuid())
+  name         String
+  email        String    @unique
+  phone        String?
+  passwordHash String
+  role         String    @default("USER") // USER | ADMIN
+  balance      Float     @default(1000)   // demo starting balance (BDT)
+  createdAt    DateTime  @default(now())
+
+  bookings     Booking[]
+  transactions Transaction[]
+}
+
+// A physical or logical corridor, e.g. "Uttara North -> Motijheel"
+model Route {
+  id          String  @id @default(cuid())
+  code        String  @unique
+  name        String
+  mode        String  // BUS | TRAIN | METRO
+  origin      String
+  destination String
+  distanceKm  Float
+  baseFare    Float
+  active      Boolean @default(true)
+
+  trips       Trip[]
+}
+
+// A scheduled departure on a route.
+model Trip {
+  id             String   @id @default(cuid())
+  routeId        String
+  route          Route    @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  departure      DateTime
+  arrival        DateTime
+  vehicleLabel   String   // e.g. "Bus BRTC-204", "Turna Express", "Metro Set-07"
+  fareMultiplier Float    @default(1.0) // peak surcharge etc.
+  active         Boolean  @default(true)
+
+  seats          Seat[]
+  bookings       Booking[]
+
+  @@index([routeId, departure])
+}
+
+// Seat / compartment position on a specific trip.
+model Seat {
+  id            String    @id @default(cuid())
+  tripId        String
+  trip          Trip      @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  label         String    // e.g. "A1", "C-12"
+  compartment   String    // e.g. "Coach A", "Cabin", "Car 1"
+  status        String    @default("AVAILABLE") // AVAILABLE | HELD | BOOKED
+  holdExpiresAt DateTime?
+  bookingId     String?
+
+  booking       Booking?  @relation(fields: [bookingId], references: [id], onDelete: SetNull)
+
+  @@unique([tripId, label])
+  @@index([tripId, status])
+}
+
+model Booking {
+  id            String    @id @default(cuid())
+  reference     String    @unique
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tripId        String
+  trip          Trip      @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  status        String    @default("PENDING") // PENDING | CONFIRMED | CANCELLED | EXPIRED
+  totalFare     Float
+  holdExpiresAt DateTime?
+  qrPayload     String?   // payload encoded into the QR
+  createdAt     DateTime  @default(now())
+  confirmedAt   DateTime?
+
+  seats         Seat[]
+  transactions  Transaction[]
+}
+
+model Transaction {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bookingId    String?
+  booking      Booking? @relation(fields: [bookingId], references: [id], onDelete: SetNull)
+  type         String   // TOPUP | PURCHASE | REFUND
+  provider     String?  // BKASH | ROCKET | CARD
+  amount       Float
+  balanceAfter Float
+  note         String?
+  createdAt    DateTime @default(now())
+
+  @@index([userId, createdAt])
+}
