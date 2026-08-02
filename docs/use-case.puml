@@ -1,0 +1,55 @@
+@startuml TransitBD-UseCase
+' Render at https://www.plantuml.com/plantuml  (or the VS Code PlantUML extension)
+left to right direction
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+skinparam shadowing false
+
+actor "Commuter" as U
+actor "Administrator" as A
+actor "Gemini AI (LLM)" as G
+
+rectangle "TransitBD Ticketing System" {
+  usecase "Register / Log In" as UC1
+  usecase "Search & View Trips" as UC2
+  usecase "Select & Hold Seats" as UC3
+  usecase "Pay & Issue QR Ticket" as UC4
+  usecase "Top-up Wallet" as UC5
+  usecase "Cancel & Refund" as UC6
+  usecase "Chat with Support Bot" as UC7
+  usecase "Plan Multi-Modal Route" as UC8
+  usecase "View Demand & Fare Forecast" as UC9
+
+  usecase "Manage Schedules / Trips" as UC10
+  usecase "Configure Fare Grid" as UC11
+  usecase "View Transaction Ledger" as UC12
+  usecase "Monitor AI Analytics" as UC13
+}
+
+' Commuter
+U --> UC1
+U --> UC2
+U --> UC3
+U --> UC4
+U --> UC5
+U --> UC6
+U --> UC7
+U --> UC8
+U --> UC9
+
+' Payment / hold relationships
+UC4 ..> UC3 : <<include>>
+UC6 ..> UC4 : <<extend>>
+
+' Administrator
+A --> UC10
+A --> UC11
+A --> UC12
+A --> UC13
+
+' AI provider
+G <-- UC7
+G <-- UC8
+G <-- UC9
+G <-- UC13
+@enduml

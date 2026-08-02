@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TransitBD — Progress Presentation (Group-5)</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" id="theme" />
+    <style>
+      :root {
+        --brand: #1b6ff5;
+        --brand-dark: #1458e1;
+        --ink: #0b1220;
+        --muted: #64748b;
+      }
+      .reveal { font-family: "Segoe UI", system-ui, sans-serif; color: var(--ink); font-size: 30px; }
+      .reveal h1, .reveal h2, .reveal h3 { color: var(--brand-dark); text-transform: none; letter-spacing: 0; font-weight: 800; }
+      .reveal h1 { font-size: 2.0em; }
+      .reveal h2 { font-size: 1.35em; margin-bottom: 0.4em; }
+      .reveal section { text-align: left; }
+      .reveal .center { text-align: center; }
+      .reveal ul { display: block; margin-left: 1em; }
+      .reveal li { margin: 6px 0; line-height: 1.35; }
+      .reveal small { color: var(--muted); }
+      .pill { display:inline-block; background:#eef4ff; color:var(--brand-dark); border-radius:999px; padding:4px 14px; font-size:0.5em; font-weight:700; }
+      .cols { display:grid; grid-template-columns:1fr 1fr; gap:26px; }
+      .cols3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; }
+      .card { background:#f8fafc; border:1px solid #e2e8f0; border-radius:14px; padding:16px 18px; }
+      .card h3 { font-size:0.8em; margin:0 0 6px; }
+      .card ul { font-size:0.62em; margin-left:0.9em; }
+      .tag { display:inline-block; background:var(--brand); color:#fff; border-radius:8px; padding:2px 10px; font-size:0.55em; font-weight:700; margin:3px 4px 3px 0; }
+      .tag.alt { background:#0f172a; }
+      .tag.g { background:#0e9f6e; }
+      .footer { position:absolute; bottom:12px; left:0; right:0; text-align:center; font-size:0.42em; color:var(--muted); }
+      .done { color:#0e9f6e; font-weight:700; }
+      table.gantt { width:100%; border-collapse:collapse; font-size:0.5em; }
+      table.gantt td, table.gantt th { padding:6px 8px; border-bottom:1px solid #e2e8f0; vertical-align:middle; }
+      table.gantt th { color:var(--muted); font-weight:600; }
+      .bar { height:16px; border-radius:6px; }
+      .b0 { background:#0e9f6e; } .b1 { background:#1b6ff5; } .b2 { background:#7c3aed; } .b3 { background:#f59e0b; }
+      .ledger { font-size:0.55em; }
+      .flow { display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:0.5em; }
+      .flow span { background:#eef4ff; border:1px solid #cfe0ff; color:var(--brand-dark); border-radius:8px; padding:5px 9px; font-weight:600; }
+      .flow b { color:var(--muted); }
+      .reveal a { color: var(--brand); }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <!-- 1. TITLE -->
+        <section data-background-gradient="linear-gradient(135deg,#1b6ff5,#193f8f)">
+          <div class="center" style="color:#fff;">
+            <span class="pill" style="background:rgba(255,255,255,.2);color:#fff;">Group-5 · Progress Presentation</span>
+            <h1 style="color:#fff; margin-top:24px;">TransitBD</h1>
+            <h3 style="color:#dbeafe; font-weight:600;">Mass Transport Ticketing System<br/>with Intelligent Transit Analytics</h3>
+            <p style="color:#dbeafe; margin-top:30px; font-size:0.7em;">Bus · Intercity Train · Metro — one platform</p>
+            <p style="color:#bfdbfe; font-size:0.55em; margin-top:40px;">Presented 3rd August 2026 &nbsp;•&nbsp; github.com/Munem3/transit-ticketing-system</p>
+          </div>
+        </section>
+
+        <!-- 2. PROBLEM STATEMENT -->
+        <section>
+          <h2>1 · Problem Statement</h2>
+          <p style="font-size:0.72em;">Public transport in Bangladesh (bus, intercity train, metro) suffers from scheduling inefficiency, overcrowding, and poor seat allocation.</p>
+          <div class="cols" style="margin-top:10px;">
+            <div class="card">
+              <h3>😟 For commuters</h3>
+              <ul>
+                <li>Severe peak-hour congestion</li>
+                <li>No dynamic fare transparency</li>
+                <li>Hard to plan multi-modal transfers (metro ↔ train ↔ bus)</li>
+                <li>No unified booking across modes</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>🏢 For authorities</h3>
+              <ul>
+                <li>No prediction of peak passenger spikes</li>
+                <li>Cannot manage congestion dynamically</li>
+                <li>No real-time, context-aware passenger assistance</li>
+                <li>Limited insight into demand & revenue</li>
+              </ul>
+            </div>
+          </div>
+          <p class="center" style="margin-top:16px; font-size:0.7em;"><b>Our solution:</b> a unified ticketing platform + AI-driven transit analytics.</p>
+        </section>
+
+        <!-- 3. REQUIREMENTS — FUNCTIONAL -->
+        <section>
+          <h2>2 · Requirement Analysis — Functional</h2>
+          <div class="cols">
+            <ul style="font-size:0.62em;">
+              <li>Secure registration & login (NextAuth.js)</li>
+              <li>Browse routes/trips by mode with <b>real-time seat tracking</b></li>
+              <li>View train compartments / metro cars / bus cabins</li>
+              <li>Transient seat holds with <b>countdown timers</b></li>
+              <li>Mock wallet payments — bKash / Rocket / Card</li>
+            </ul>
+            <ul style="font-size:0.62em;">
+              <li>Instant <b>QR-coded tickets</b> + receipts</li>
+              <li>Cancellation with automatic wallet refund</li>
+              <li><b>AI</b> Peak Demand & Fare Predictor</li>
+              <li><b>AI</b> Multi-Modal Route Planner</li>
+              <li><b>AI</b> Customer Support Bot</li>
+              <li>Admin: schedules, fare grid, transaction ledger</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 4. REQUIREMENTS — NON-FUNCTIONAL -->
+        <section>
+          <h2>2 · Requirement Analysis — Non-Functional</h2>
+          <div class="cols3">
+            <div class="card"><h3>🔒 Security</h3><ul><li>bcrypt password hashing</li><li>JWT sessions</li><li>Server-side authorization</li><li>Zod input validation</li></ul></div>
+            <div class="card"><h3>⚡ Performance</h3><ul><li>Sub-second seat reads</li><li>Indexed DB queries</li><li>Server-rendered pages</li></ul></div>
+            <div class="card"><h3>✅ Reliability</h3><ul><li>Transactional booking (no double-booking)</li><li>Auto-expiry of holds</li></ul></div>
+            <div class="card"><h3>📱 Usability</h3><ul><li>Responsive, mobile-first UI</li><li>Clear booking flow</li></ul></div>
+            <div class="card"><h3>📈 Scalability</h3><ul><li>Prisma ORM</li><li>SQLite → PostgreSQL swap</li><li>Stateless backend</li></ul></div>
+            <div class="card"><h3>🛠 Maintainability</h3><ul><li>TypeScript end-to-end</li><li>Modular App Router</li></ul></div>
+          </div>
+        </section>
+
+        <!-- 5. FEASIBILITY -->
+        <section>
+          <h2>3 · Feasibility Analysis</h2>
+          <div class="cols3">
+            <div class="card">
+              <h3>⚙️ Technical</h3>
+              <ul>
+                <li>Proven stack: Next.js, Prisma, NextAuth, Gemini</li>
+                <li><b>Working prototype already built end-to-end</b></li>
+                <li>AI via Gemini API + heuristic fallback (no hard dependency)</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>👥 Operational</h3>
+              <ul>
+                <li>Familiar bKash/Rocket wallet UX</li>
+                <li>QR-at-gate already common in Dhaka Metro</li>
+                <li>Admin panel for operators — low training need</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>💰 Economic</h3>
+              <ul>
+                <li>100% open-source stack</li>
+                <li>Free tiers: Vercel, Gemini, Postgres</li>
+                <li>Mock payments — no gateway fees in dev</li>
+              </ul>
+            </div>
+          </div>
+          <p class="center" style="margin-top:18px; font-size:0.66em;">→ Practical &amp; achievable: the core is <span class="done">already running</span>; remaining work is polish, live-AI tuning, and deployment.</p>
+        </section>
+
+        <!-- 6. USE CASE DIAGRAM -->
+        <section>
+          <h2>4 · UML — Use Case Diagram</h2>
+          <div class="center">
+            <svg viewBox="0 0 1120 700" style="width:100%; max-height:560px;">
+              <!-- system boundary -->
+              <rect x="270" y="30" width="580" height="600" rx="16" fill="#f8fafc" stroke="#1b6ff5" stroke-width="2"/>
+              <text x="560" y="58" text-anchor="middle" font-size="22" font-weight="800" fill="#1458e1">TransitBD Ticketing System</text>
+
+              <!-- actors -->
+              <g stroke="#0b1220" stroke-width="2" fill="none">
+                <!-- Commuter -->
+                <circle cx="110" cy="255" r="13" fill="#0b1220"/>
+                <line x1="110" y1="268" x2="110" y2="300"/>
+                <line x1="88" y1="280" x2="132" y2="280"/>
+                <line x1="110" y1="300" x2="94" y2="325"/>
+                <line x1="110" y1="300" x2="126" y2="325"/>
+                <!-- Administrator -->
+                <circle cx="1010" cy="235" r="13" fill="#0b1220"/>
+                <line x1="1010" y1="248" x2="1010" y2="280"/>
+                <line x1="988" y1="260" x2="1032" y2="260"/>
+                <line x1="1010" y1="280" x2="994" y2="305"/>
+                <line x1="1010" y1="280" x2="1026" y2="305"/>
+                <!-- Gemini AI -->
+                <circle cx="560" cy="648" r="13" fill="#0e9f6e" stroke="#0e9f6e"/>
+                <line x1="560" y1="661" x2="560" y2="690" stroke="#0e9f6e"/>
+                <line x1="538" y1="673" x2="582" y2="673" stroke="#0e9f6e"/>
+              </g>
+              <text x="110" y="348" text-anchor="middle" font-size="18" font-weight="700">Commuter</text>
+              <text x="1010" y="328" text-anchor="middle" font-size="18" font-weight="700">Administrator</text>
+              <text x="560" y="695" text-anchor="middle" font-size="16" font-weight="700" fill="#0e9f6e">Gemini AI (LLM)</text>
+
+              <!-- association lines (drawn first, under ellipses) -->
+              <g stroke="#94a3b8" stroke-width="1.5">
+                <!-- commuter -> left use cases (left edge x=320) -->
+                <line x1="132" y1="285" x2="320" y2="95"/>
+                <line x1="132" y1="285" x2="320" y2="160"/>
+                <line x1="132" y1="285" x2="320" y2="225"/>
+                <line x1="132" y1="285" x2="320" y2="290"/>
+                <line x1="132" y1="285" x2="320" y2="355"/>
+                <line x1="132" y1="285" x2="320" y2="420"/>
+                <line x1="132" y1="285" x2="320" y2="510"/>
+                <!-- admin -> right use cases (right edge x=800) -->
+                <line x1="988" y1="270" x2="800" y2="140"/>
+                <line x1="988" y1="270" x2="800" y2="230"/>
+                <line x1="988" y1="270" x2="800" y2="320"/>
+                <line x1="988" y1="270" x2="800" y2="430"/>
+                <!-- gemini -> AI use cases (bottom) -->
+                <line x1="560" y1="635" x2="430" y2="537" stroke="#0e9f6e"/>
+                <line x1="560" y1="635" x2="690" y2="457" stroke="#0e9f6e"/>
+              </g>
+
+              <!-- use case ellipses -->
+              <g font-size="15" text-anchor="middle" fill="#0b1220">
+                <!-- left column cx=430 -->
+                <ellipse cx="430" cy="95"  rx="110" ry="27" fill="#eef4ff" stroke="#1b6ff5"/><text x="430" y="100">Register / Log In</text>
+                <ellipse cx="430" cy="160" rx="110" ry="27" fill="#eef4ff" stroke="#1b6ff5"/><text x="430" y="165">Search &amp; View Trips</text>
+                <ellipse cx="430" cy="225" rx="110" ry="27" fill="#eef4ff" stroke="#1b6ff5"/><text x="430" y="230">Select &amp; Hold Seats</text>
+                <ellipse cx="430" cy="290" rx="110" ry="27" fill="#eef4ff" stroke="#1b6ff5"/><text x="430" y="295">Pay &amp; Issue QR Ticket</text>
+                <ellipse cx="430" cy="355" rx="110" ry="27" fill="#eef4ff" stroke="#1b6ff5"/><text x="430" y="360">Top-up Wallet</text>
+                <ellipse cx="430" cy="420" rx="110" ry="27" fill="#eef4ff" stroke="#1b6ff5"/><text x="430" y="425">Cancel &amp; Refund</text>
+                <ellipse cx="430" cy="510" rx="118" ry="30" fill="#e7f8f0" stroke="#0e9f6e"/><text x="430" y="515">Use AI Assistant</text>
+                <!-- right column cx=690 -->
+                <ellipse cx="690" cy="140" rx="110" ry="27" fill="#eef4ff" stroke="#1b6ff5"/><text x="690" y="145">Manage Schedules</text>
+                <ellipse cx="690" cy="230" rx="110" ry="27" fill="#eef4ff" stroke="#1b6ff5"/><text x="690" y="235">Configure Fare Grid</text>
+                <ellipse cx="690" cy="320" rx="110" ry="27" fill="#eef4ff" stroke="#1b6ff5"/><text x="690" y="325">View Txn Ledger</text>
+                <ellipse cx="690" cy="430" rx="118" ry="30" fill="#e7f8f0" stroke="#0e9f6e"/><text x="690" y="435">Monitor AI Analytics</text>
+              </g>
+            </svg>
+          </div>
+          <p class="center"><small>Green = AI-powered use cases (Support Bot · Route Planner · Demand &amp; Fare Predictor)</small></p>
+        </section>
+
+        <!-- 7. TECHNOLOGY STACK -->
+        <section>
+          <h2>5 · Technology Stack</h2>
+          <div class="cols">
+            <div class="card">
+              <h3>Frontend</h3>
+              <p><span class="tag">TypeScript</span><span class="tag">Next.js 14 (App Router)</span><span class="tag">React 18</span><span class="tag">Tailwind CSS</span></p>
+              <h3 style="margin-top:12px;">Backend</h3>
+              <p><span class="tag alt">Next.js Server Actions</span><span class="tag alt">API Route Handlers</span><span class="tag alt">Zod</span></p>
+            </div>
+            <div class="card">
+              <h3>Database &amp; Auth</h3>
+              <p><span class="tag">Prisma ORM</span><span class="tag">SQLite → PostgreSQL</span><span class="tag alt">NextAuth.js</span><span class="tag alt">bcrypt / JWT</span></p>
+              <h3 style="margin-top:12px;">AI &amp; Tools</h3>
+              <p><span class="tag g">Google Gemini API</span><span class="tag g">Prisma analytics</span><span class="tag alt">qrcode</span><span class="tag alt">Node.js · Git · Vercel</span></p>
+            </div>
+          </div>
+          <p class="center" style="margin-top:14px; font-size:0.62em;">Analytics = Prisma aggregation over historical booking/transaction data → fed to Gemini for narrative advice.</p>
+        </section>
+
+        <!-- 8. TIMELINE / GANTT -->
+        <section>
+          <h2>6 · Project Timeline (3 weeks left)</h2>
+          <table class="gantt">
+            <tr><th style="width:26%">Phase</th><th>Wk 0 · Aug 1–3 <br/><span class="done">done</span></th><th>Wk 1 · Aug 4–10</th><th>Wk 2 · Aug 11–17</th><th>Wk 3 · Aug 18–24</th></tr>
+            <tr><td>Requirements &amp; Design</td><td><div class="bar b0"></div></td><td></td><td></td><td></td></tr>
+            <tr><td>Env setup &amp; core prototype</td><td><div class="bar b0"></div></td><td></td><td></td><td></td></tr>
+            <tr><td>Live Gemini AI + tuning</td><td></td><td><div class="bar b1"></div></td><td><div class="bar b1" style="opacity:.5"></div></td><td></td></tr>
+            <tr><td>Concurrency, real-time, tests</td><td></td><td><div class="bar b1"></div></td><td></td><td></td></tr>
+            <tr><td>Analytics dashboards &amp; UI polish</td><td></td><td></td><td><div class="bar b2"></div></td><td></td></tr>
+            <tr><td>Mobile / accessibility / seed data</td><td></td><td></td><td><div class="bar b2"></div></td><td></td></tr>
+            <tr><td>QA, deploy (Vercel + Postgres), docs</td><td></td><td></td><td></td><td><div class="bar b3"></div></td></tr>
+          </table>
+          <p class="center" style="margin-top:16px; font-size:0.6em;"><b>Final delivery target:</b> 24 August 2026</p>
+        </section>
+
+        <!-- 9. PROGRESS SO FAR -->
+        <section>
+          <h2>7 · Progress So Far</h2>
+          <div class="cols">
+            <div>
+              <h3 style="font-size:0.8em;">✅ Completed</h3>
+              <ul style="font-size:0.58em;">
+                <li>Requirement analysis &amp; system design</li>
+                <li>Data model — 7 entities (User, Route, Trip, Seat, Booking, Transaction…)</li>
+                <li>Environment set up · production build passing</li>
+                <li>Auth, route browsing, live seat maps, 5-min hold timers</li>
+                <li>Mock wallet + transaction ledger · QR tickets · cancel/refund</li>
+                <li>Admin panel — fare grid, ledger, trip control</li>
+                <li>All 3 AI features (Gemini + heuristic fallback)</li>
+                <li>Seeded data: <b>5 routes · 108 trips · 4,800 seats</b></li>
+                <li>Pushed to public GitHub repo</li>
+              </ul>
+            </div>
+            <div>
+              <h3 style="font-size:0.8em;">🔜 Next</h3>
+              <ul style="font-size:0.58em;">
+                <li>Wire live Gemini key &amp; refine prompts</li>
+                <li>Real-time seat refresh (polling / websockets)</li>
+                <li>Admin analytics charts</li>
+                <li>Automated tests &amp; deploy to Vercel</li>
+              </ul>
+              <div class="card" style="margin-top:14px;">
+                <p style="font-size:0.55em; margin:0;"><b>Status:</b> <span class="done">Working prototype — ahead of a typical "progress" checkpoint.</span></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 10. PROTOTYPE DEMO -->
+        <section>
+          <h2>8 · Prototype Demonstration</h2>
+          <p style="font-size:0.6em; margin-bottom:6px;"><b>Navigation flow:</b></p>
+          <div class="flow">
+            <span>Landing</span><b>→</b><span>Register / Login</span><b>→</b><span>Dashboard</span><b>→</b><span>Browse Trips</span><b>→</b><span>Seat Map + Hold</span><b>→</b><span>Pay (Wallet)</span><b>→</b><span>QR Ticket</span>
+          </div>
+          <div class="flow" style="margin-top:8px;">
+            <span>Wallet / Top-up</span><b>·</b><span>AI Assistant (3 tabs)</span><b>·</b><span>Admin Panel</span>
+          </div>
+          <div class="cols" style="margin-top:16px;">
+            <div class="card"><h3>Built pages &amp; components</h3><ul style="font-size:0.55em;"><li>Landing, Register, Login, Dashboard</li><li>Routes browser (mode filter, live load bars)</li><li>Interactive seat map + countdown</li><li>Wallet + ledger, Tickets + QR receipt</li><li>AI Assistant: Support · Planner · Predictor</li><li>Admin: stats, fare grid, ledger</li></ul></div>
+            <div class="card"><h3>Live demo</h3><ul style="font-size:0.55em;"><li>Run: <code>npm run setup</code> → <code>npm run dev</code></li><li>Local: <b>localhost:3000</b></li><li>Admin: admin@transit.bd / admin123</li><li>User: rahim@example.com / password123</li></ul><p style="font-size:0.5em; margin-top:6px;"><b>Repo:</b> github.com/Munem3/transit-ticketing-system</p></div>
+          </div>
+        </section>
+
+        <!-- 11. THANK YOU -->
+        <section data-background-gradient="linear-gradient(135deg,#1b6ff5,#193f8f)">
+          <div class="center" style="color:#fff;">
+            <h1 style="color:#fff;">Thank you</h1>
+            <p style="color:#dbeafe; font-size:0.8em;">TransitBD — Group-5</p>
+            <p style="color:#bfdbfe; font-size:0.6em; margin-top:24px;">Questions &amp; Answers</p>
+            <p style="color:#bfdbfe; font-size:0.5em; margin-top:40px;">github.com/Munem3/transit-ticketing-system</p>
+          </div>
+        </section>
+
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+    <script>
+      Reveal.initialize({ hash: true, slideNumber: "c/t", transition: "slide", width: 1280, height: 720, margin: 0.04 });
+    </script>
+  </body>
+</html>
