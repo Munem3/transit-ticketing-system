@@ -43,6 +43,11 @@
       .flow span { background:#eef4ff; border:1px solid #cfe0ff; color:var(--brand-dark); border-radius:8px; padding:5px 9px; font-weight:600; }
       .flow b { color:var(--muted); }
       .reveal a { color: var(--brand); }
+      .shotgrid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+      .shotgrid figure, .duo figure { margin:0; }
+      .shotgrid img, .duo img { width:100%; border:1px solid #e2e8f0; border-radius:10px; box-shadow:0 6px 18px rgba(2,6,23,.14); display:block; }
+      .shotgrid figcaption, .duo figcaption { font-size:0.4em; color:var(--muted); margin-top:5px; text-align:center; font-weight:600; }
+      .duo { display:grid; grid-template-columns:1fr 1fr; gap:34px; align-items:start; }
     </style>
   </head>
   <body>
@@ -296,7 +301,7 @@
           </div>
         </section>
 
-        <!-- 10. PROTOTYPE DEMO -->
+        <!-- 10a. PROTOTYPE DEMO — flow -->
         <section>
           <h2>8 · Prototype Demonstration</h2>
           <p style="font-size:0.6em; margin-bottom:6px;"><b>Navigation flow:</b></p>
@@ -307,8 +312,37 @@
             <span>Wallet / Top-up</span><b>·</b><span>AI Assistant (3 tabs)</span><b>·</b><span>Admin Panel</span>
           </div>
           <div class="cols" style="margin-top:16px;">
-            <div class="card"><h3>Built pages &amp; components</h3><ul style="font-size:0.55em;"><li>Landing, Register, Login, Dashboard</li><li>Routes browser (mode filter, live load bars)</li><li>Interactive seat map + countdown</li><li>Wallet + ledger, Tickets + QR receipt</li><li>AI Assistant: Support · Planner · Predictor</li><li>Admin: stats, fare grid, ledger</li></ul></div>
-            <div class="card"><h3>Live demo</h3><ul style="font-size:0.55em;"><li>Run: <code>npm run setup</code> → <code>npm run dev</code></li><li>Local: <b>localhost:3000</b></li><li>Admin: admin@transit.bd / admin123</li><li>User: rahim@example.com / password123</li></ul><p style="font-size:0.5em; margin-top:6px;"><b>Repo:</b> github.com/Munem3/transit-ticketing-system</p></div>
+            <div class="card"><h3>Built &amp; working</h3><ul style="font-size:0.55em;"><li>Landing, Register, Login, Dashboard</li><li>Routes browser (mode filter, live load bars)</li><li>Interactive seat map + hold countdown</li><li>Wallet + ledger, Tickets + QR receipt</li><li>AI Assistant: Support · Planner · Predictor</li><li>Admin: stats, fare grid, ledger</li></ul></div>
+            <div class="card"><h3>Run it yourself</h3><ul style="font-size:0.55em;"><li><code>npm run setup</code> → <code>npm run dev</code></li><li>Local: <b>localhost:3000</b></li><li>Admin: admin@transit.bd / admin123</li><li>User: rahim@example.com / password123</li></ul><p style="font-size:0.5em; margin-top:6px;"><b>Repo:</b> github.com/Munem3/transit-ticketing-system</p></div>
+          </div>
+          <p class="center"><small>Screenshots from the running prototype follow →</small></p>
+        </section>
+
+        <!-- 10b. DEMO — booking flow screenshots -->
+        <section>
+          <h2>8 · Prototype — Booking Flow (live app)</h2>
+          <div class="duo">
+            <figure>
+              <img src="screenshots/06-hold-payment.png" alt="Seat selection with hold countdown and payment"/>
+              <figcaption>Select seats → 5-minute hold countdown → pay with bKash / Rocket / Card</figcaption>
+            </figure>
+            <figure>
+              <img src="screenshots/09-ticket-qr.png" alt="Confirmed QR ticket"/>
+              <figcaption>Instant QR-coded ticket issued on payment</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <!-- 10c. DEMO — screens gallery -->
+        <section>
+          <h2>8 · Prototype — Key Screens</h2>
+          <div class="shotgrid">
+            <figure><img src="screenshots/03-dashboard.png" alt="Dashboard"/><figcaption>Commuter dashboard</figcaption></figure>
+            <figure><img src="screenshots/04-routes.png" alt="Routes browser"/><figcaption>Trip browser · live seat load</figcaption></figure>
+            <figure><img src="screenshots/05-seatmap-selected.png" alt="Seat map"/><figcaption>Real-time seat map</figcaption></figure>
+            <figure><img src="screenshots/07-wallet.png" alt="Wallet"/><figcaption>Wallet + transaction ledger</figcaption></figure>
+            <figure><img src="screenshots/10-assistant.png" alt="AI assistant"/><figcaption>AI Assistant (3 tools)</figcaption></figure>
+            <figure><img src="screenshots/11-admin.png" alt="Admin panel"/><figcaption>Admin control panel</figcaption></figure>
           </div>
         </section>
 
