@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" font-family="Segoe UI, system-ui, sans-serif">
+  <defs>
+    <marker id="arw" markerWidth="11" markerHeight="11" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#475569"/>
+    </marker>
+    <marker id="oarw" markerWidth="13" markerHeight="13" refX="10" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8" fill="none" stroke="#475569" stroke-width="1.4"/>
+    </marker>
+    <g id="actor" stroke="#0f172a" stroke-width="2.2" fill="none">
+      <circle cx="0" cy="-26" r="11" fill="#0f172a" stroke="none"/>
+      <line x1="0" y1="-15" x2="0" y2="10"/>
+      <line x1="-16" y1="-4" x2="16" y2="-4"/>
+      <line x1="0" y1="10" x2="-13" y2="30"/>
+      <line x1="0" y1="10" x2="13" y2="30"/>
+    </g>
+  </defs>
+
+  <!-- system boundary -->
+  <rect x="440" y="40" width="320" height="660" rx="14" fill="#f8fafc" stroke="#0f766e" stroke-width="2"/>
+  <text x="600" y="66" text-anchor="middle" font-size="18" font-weight="800" fill="#0f766e">TransitBD Ticketing System</text>
+
+  <!-- association lines (under ellipses) -->
+  <g stroke="#94a3b8" stroke-width="1.5" fill="none">
+    <!-- Commuter (left) -> UC1..UC9 left edge x=480 -->
+    <line x1="176" y1="282" x2="480" y2="88"  marker-end="url(#arw)"/>
+    <line x1="176" y1="282" x2="480" y2="135" marker-end="url(#arw)"/>
+    <line x1="176" y1="282" x2="480" y2="182" marker-end="url(#arw)"/>
+    <line x1="176" y1="282" x2="480" y2="229" marker-end="url(#arw)"/>
+    <line x1="176" y1="282" x2="480" y2="276" marker-end="url(#arw)"/>
+    <line x1="176" y1="282" x2="480" y2="323" marker-end="url(#arw)"/>
+    <line x1="176" y1="282" x2="480" y2="370" marker-end="url(#arw)"/>
+    <line x1="176" y1="282" x2="480" y2="417" marker-end="url(#arw)"/>
+    <line x1="176" y1="282" x2="480" y2="464" marker-end="url(#arw)"/>
+    <!-- Gemini (right) -> AI use cases right edge x=720 -->
+    <line x1="1024" y1="430" x2="720" y2="370" stroke="#0d9488" marker-end="url(#arw)"/>
+    <line x1="1024" y1="430" x2="720" y2="417" stroke="#0d9488" marker-end="url(#arw)"/>
+    <line x1="1024" y1="430" x2="720" y2="464" stroke="#0d9488" marker-end="url(#arw)"/>
+    <line x1="1024" y1="430" x2="720" y2="511" stroke="#0d9488" marker-end="url(#arw)"/>
+    <!-- Administrator (right) -> admin use cases right edge x=720 -->
+    <line x1="1024" y1="600" x2="720" y2="511" marker-end="url(#arw)"/>
+    <line x1="1024" y1="600" x2="720" y2="558" marker-end="url(#arw)"/>
+    <line x1="1024" y1="600" x2="720" y2="605" marker-end="url(#arw)"/>
+    <line x1="1024" y1="600" x2="720" y2="652" marker-end="url(#arw)"/>
+  </g>
+
+  <!-- include / extend dependencies (right of column) -->
+  <g stroke="#475569" stroke-width="1.4" stroke-dasharray="6 4" fill="none">
+    <path d="M720,229 C 792,214 792,197 720,182" marker-end="url(#oarw)"/>
+    <path d="M720,323 C 815,292 815,262 720,229" marker-end="url(#oarw)"/>
+  </g>
+  <text x="806" y="200" font-size="12" fill="#475569" font-style="italic">«include»</text>
+  <text x="828" y="280" font-size="12" fill="#475569" font-style="italic">«extend»</text>
+
+  <!-- use case ellipses -->
+  <g text-anchor="middle" fill="#0f172a">
+    <!-- commuter use cases -->
+    <g>
+      <ellipse cx="600" cy="88"  rx="120" ry="21" fill="#eef2ff" stroke="#0f766e"/><text x="600" y="92" font-size="13">Register / Log In</text>
+      <ellipse cx="600" cy="135" rx="120" ry="21" fill="#eef2ff" stroke="#0f766e"/><text x="600" y="139" font-size="13">Search &amp; View Trips</text>
+      <ellipse cx="600" cy="182" rx="120" ry="21" fill="#eef2ff" stroke="#0f766e"/><text x="600" y="186" font-size="13">Select &amp; Hold Seats</text>
+      <ellipse cx="600" cy="229" rx="120" ry="21" fill="#eef2ff" stroke="#0f766e"/><text x="600" y="233" font-size="13">Pay &amp; Issue QR Ticket</text>
+      <ellipse cx="600" cy="276" rx="120" ry="21" fill="#eef2ff" stroke="#0f766e"/><text x="600" y="280" font-size="13">Top-up Wallet</text>
+      <ellipse cx="600" cy="323" rx="120" ry="21" fill="#eef2ff" stroke="#0f766e"/><text x="600" y="327" font-size="13">Cancel &amp; Refund</text>
+    </g>
+    <!-- AI use cases (mint) -->
+    <g>
+      <ellipse cx="600" cy="370" rx="120" ry="21" fill="#d1fae5" stroke="#0d9488"/><text x="600" y="374" font-size="13">Chat with Support Bot</text>
+      <ellipse cx="600" cy="417" rx="120" ry="21" fill="#d1fae5" stroke="#0d9488"/><text x="600" y="421" font-size="13">Plan Multi-Modal Route</text>
+      <ellipse cx="600" cy="464" rx="122" ry="21" fill="#d1fae5" stroke="#0d9488"/><text x="600" y="468" font-size="12">View Demand &amp; Fare Forecast</text>
+      <ellipse cx="600" cy="511" rx="120" ry="21" fill="#d1fae5" stroke="#0d9488"/><text x="600" y="515" font-size="13">Monitor AI Analytics</text>
+    </g>
+    <!-- admin use cases -->
+    <g>
+      <ellipse cx="600" cy="558" rx="120" ry="21" fill="#eef2ff" stroke="#0f766e"/><text x="600" y="562" font-size="13">Manage Schedules / Trips</text>
+      <ellipse cx="600" cy="605" rx="120" ry="21" fill="#eef2ff" stroke="#0f766e"/><text x="600" y="609" font-size="13">Configure Fare Grid</text>
+      <ellipse cx="600" cy="652" rx="120" ry="21" fill="#eef2ff" stroke="#0f766e"/><text x="600" y="656" font-size="13">View Transaction Ledger</text>
+    </g>
+  </g>
+
+  <!-- actors -->
+  <use href="#actor" x="150" y="282"/>
+  <text x="150" y="330" text-anchor="middle" font-size="16" font-weight="700" fill="#0f172a">Commuter</text>
+
+  <g>
+    <use href="#actor" x="1050" y="430"/>
+    <circle cx="1050" cy="404" r="11" fill="#0d9488"/>
+    <text x="1050" y="478" text-anchor="middle" font-size="15" font-weight="700" fill="#0d9488">Gemini AI (LLM)</text>
+  </g>
+
+  <use href="#actor" x="1050" y="600"/>
+  <text x="1050" y="648" text-anchor="middle" font-size="16" font-weight="700" fill="#0f172a">Administrator</text>
+</svg>
