@@ -4,29 +4,39 @@ left to right direction
 skinparam packageStyle rectangle
 skinparam actorStyle awesome
 skinparam shadowing false
+skinparam nodesep 12
+skinparam ranksep 90
+skinparam usecase {
+  BackgroundColor #F4FAF9
+  BorderColor #0F766E
+}
+skinparam actorBorderColor #0F172A
 
 actor "Commuter" as U
-actor "Administrator" as A
-actor "Gemini AI (LLM)" as G
 
 rectangle "TransitBD Ticketing System" {
+  ' --- Commuter-only use cases (top) ---
   usecase "Register / Log In" as UC1
   usecase "Search & View Trips" as UC2
   usecase "Select & Hold Seats" as UC3
   usecase "Pay & Issue QR Ticket" as UC4
   usecase "Top-up Wallet" as UC5
   usecase "Cancel & Refund" as UC6
+  ' --- AI-powered use cases (middle) ---
   usecase "Chat with Support Bot" as UC7
   usecase "Plan Multi-Modal Route" as UC8
   usecase "View Demand & Fare Forecast" as UC9
-
+  usecase "Monitor AI Analytics" as UC13
+  ' --- Admin-only use cases (bottom) ---
   usecase "Manage Schedules / Trips" as UC10
   usecase "Configure Fare Grid" as UC11
   usecase "View Transaction Ledger" as UC12
-  usecase "Monitor AI Analytics" as UC13
 }
 
-' Commuter (left side)
+actor "Administrator" as A
+actor "Gemini AI (LLM)" as G
+
+' Commuter (left) — arrows point into the use cases
 U --> UC1
 U --> UC2
 U --> UC3
@@ -37,19 +47,19 @@ U --> UC7
 U --> UC8
 U --> UC9
 
-' Payment / hold relationships
+' Include / extend relationships
 UC4 ..> UC3 : <<include>>
 UC6 ..> UC4 : <<extend>>
 
-' Administrator (right side) — arrow points from admin into the use cases
+' Gemini AI (right) — powers the AI use cases, arrows point into the use cases
+UC7 <-- G
+UC8 <-- G
+UC9 <-- G
+UC13 <-- G
+
+' Administrator (right) — arrows point into the use cases
+UC13 <-- A
 UC10 <-- A
 UC11 <-- A
 UC12 <-- A
-UC13 <-- A
-
-' Gemini AI provides / powers the AI use cases (arrow points into the use cases)
-G --> UC7
-G --> UC8
-G --> UC9
-G --> UC13
 @enduml
