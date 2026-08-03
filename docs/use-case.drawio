@@ -1,0 +1,73 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="Use Case Diagram" id="transitbd-usecase">
+    <mxGraphModel dx="1400" dy="820" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="740" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- System boundary -->
+        <mxCell id="bnd" value="TransitBD Ticketing System" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;fontSize=14;fontColor=#0F766E;strokeColor=#0F766E;fillColor=#F8FAFC;" vertex="1" parent="1">
+          <mxGeometry x="360" y="40" width="340" height="650" as="geometry" />
+        </mxCell>
+
+        <!-- Actors -->
+        <mxCell id="ac" value="Commuter" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontStyle=1;fontSize=13;strokeColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry x="120" y="320" width="40" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ag" value="Gemini AI (LLM)" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontStyle=1;fontSize=13;strokeColor=#0D9488;fillColor=#0D9488;fontColor=#0D9488;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="315" width="40" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="aa" value="Administrator" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;fontStyle=1;fontSize=13;strokeColor=#0F172A;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="560" width="40" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Use cases: commuter -->
+        <mxCell id="u1" value="Register / Log In" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#0F766E;fontSize=12;" vertex="1" parent="1"><mxGeometry x="425" y="70" width="210" height="40" as="geometry" /></mxCell>
+        <mxCell id="u2" value="Search &amp; View Trips" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#0F766E;fontSize=12;" vertex="1" parent="1"><mxGeometry x="425" y="116" width="210" height="40" as="geometry" /></mxCell>
+        <mxCell id="u3" value="Select &amp; Hold Seats" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#0F766E;fontSize=12;" vertex="1" parent="1"><mxGeometry x="425" y="162" width="210" height="40" as="geometry" /></mxCell>
+        <mxCell id="u4" value="Pay &amp; Issue QR Ticket" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#0F766E;fontSize=12;" vertex="1" parent="1"><mxGeometry x="425" y="208" width="210" height="40" as="geometry" /></mxCell>
+        <mxCell id="u5" value="Top-up Wallet" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#0F766E;fontSize=12;" vertex="1" parent="1"><mxGeometry x="425" y="254" width="210" height="40" as="geometry" /></mxCell>
+        <mxCell id="u6" value="Cancel &amp; Refund" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#0F766E;fontSize=12;" vertex="1" parent="1"><mxGeometry x="425" y="300" width="210" height="40" as="geometry" /></mxCell>
+
+        <!-- Use cases: AI (mint) -->
+        <mxCell id="u7" value="Chat with Support Bot" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D5F5E3;strokeColor=#0D9488;fontSize=12;" vertex="1" parent="1"><mxGeometry x="425" y="346" width="210" height="40" as="geometry" /></mxCell>
+        <mxCell id="u8" value="Plan Multi-Modal Route" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D5F5E3;strokeColor=#0D9488;fontSize=12;" vertex="1" parent="1"><mxGeometry x="425" y="392" width="210" height="40" as="geometry" /></mxCell>
+        <mxCell id="u9" value="View Demand &amp; Fare Forecast" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D5F5E3;strokeColor=#0D9488;fontSize=11;" vertex="1" parent="1"><mxGeometry x="425" y="438" width="210" height="40" as="geometry" /></mxCell>
+        <mxCell id="u10" value="Monitor AI Analytics" style="ellipse;whiteSpace=wrap;html=1;fillColor=#D5F5E3;strokeColor=#0D9488;fontSize=12;" vertex="1" parent="1"><mxGeometry x="425" y="484" width="210" height="40" as="geometry" /></mxCell>
+
+        <!-- Use cases: admin -->
+        <mxCell id="u11" value="Manage Schedules / Trips" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#0F766E;fontSize=12;" vertex="1" parent="1"><mxGeometry x="425" y="530" width="210" height="40" as="geometry" /></mxCell>
+        <mxCell id="u12" value="Configure Fare Grid" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#0F766E;fontSize=12;" vertex="1" parent="1"><mxGeometry x="425" y="576" width="210" height="40" as="geometry" /></mxCell>
+        <mxCell id="u13" value="View Transaction Ledger" style="ellipse;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#0F766E;fontSize=12;" vertex="1" parent="1"><mxGeometry x="425" y="622" width="210" height="40" as="geometry" /></mxCell>
+
+        <!-- Commuter associations -->
+        <mxCell id="ec1" style="endArrow=open;endFill=0;html=1;strokeColor=#94A3B8;" edge="1" parent="1" source="ac" target="u1"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec2" style="endArrow=open;endFill=0;html=1;strokeColor=#94A3B8;" edge="1" parent="1" source="ac" target="u2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec3" style="endArrow=open;endFill=0;html=1;strokeColor=#94A3B8;" edge="1" parent="1" source="ac" target="u3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec4" style="endArrow=open;endFill=0;html=1;strokeColor=#94A3B8;" edge="1" parent="1" source="ac" target="u4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec5" style="endArrow=open;endFill=0;html=1;strokeColor=#94A3B8;" edge="1" parent="1" source="ac" target="u5"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec6" style="endArrow=open;endFill=0;html=1;strokeColor=#94A3B8;" edge="1" parent="1" source="ac" target="u6"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec7" style="endArrow=open;endFill=0;html=1;strokeColor=#94A3B8;" edge="1" parent="1" source="ac" target="u7"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec8" style="endArrow=open;endFill=0;html=1;strokeColor=#94A3B8;" edge="1" parent="1" source="ac" target="u8"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ec9" style="endArrow=open;endFill=0;html=1;strokeColor=#94A3B8;" edge="1" parent="1" source="ac" target="u9"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Gemini associations -->
+        <mxCell id="eg7" style="endArrow=open;endFill=0;html=1;strokeColor=#0D9488;" edge="1" parent="1" source="ag" target="u7"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="eg8" style="endArrow=open;endFill=0;html=1;strokeColor=#0D9488;" edge="1" parent="1" source="ag" target="u8"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="eg9" style="endArrow=open;endFill=0;html=1;strokeColor=#0D9488;" edge="1" parent="1" source="ag" target="u9"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="eg10" style="endArrow=open;endFill=0;html=1;strokeColor=#0D9488;" edge="1" parent="1" source="ag" target="u10"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Administrator associations -->
+        <mxCell id="ea10" style="endArrow=open;endFill=0;html=1;strokeColor=#94A3B8;" edge="1" parent="1" source="aa" target="u10"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ea11" style="endArrow=open;endFill=0;html=1;strokeColor=#94A3B8;" edge="1" parent="1" source="aa" target="u11"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ea12" style="endArrow=open;endFill=0;html=1;strokeColor=#94A3B8;" edge="1" parent="1" source="aa" target="u12"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ea13" style="endArrow=open;endFill=0;html=1;strokeColor=#94A3B8;" edge="1" parent="1" source="aa" target="u13"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- include / extend -->
+        <mxCell id="einc" value="&#171;include&#187;" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#475569;fontSize=11;fontStyle=2;fontColor=#475569;" edge="1" parent="1" source="u4" target="u3"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="eext" value="&#171;extend&#187;" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#475569;fontSize=11;fontStyle=2;fontColor=#475569;" edge="1" parent="1" source="u6" target="u4"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
