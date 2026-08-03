@@ -2,9 +2,11 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { topUp, TOPUP_PRESETS } from "@/app/actions/wallet";
+import { topUp } from "@/app/actions/wallet";
 import { formatBDT, classNames } from "@/lib/utils";
 import type { WalletProvider } from "@/lib/enums";
+
+const TOPUP_PRESETS = [200, 500, 1000, 2000];
 
 const PROVIDERS: { id: WalletProvider; label: string; color: string }[] = [
   { id: "BKASH", label: "bKash", color: "bg-pink-600 hover:bg-pink-700" },

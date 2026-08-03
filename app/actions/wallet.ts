@@ -7,8 +7,6 @@ import type { WalletProvider } from "@/lib/enums";
 
 type ActionResult = { ok: true; balance: number } | { ok: false; error: string };
 
-const PRESETS = [200, 500, 1000, 2000];
-
 /**
  * Mock top-up from a digital wallet (bKash / Rocket / Card). No real money moves;
  * it just credits the demo balance and records a transaction.
@@ -52,5 +50,3 @@ export async function topUp(
   revalidatePath("/wallet");
   return { ok: true, balance: balanceAfter };
 }
-
-export { PRESETS as TOPUP_PRESETS };
