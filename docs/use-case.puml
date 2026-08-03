@@ -26,7 +26,7 @@ rectangle "TransitBD Ticketing System" {
   usecase "Monitor AI Analytics" as UC13
 }
 
-' Commuter
+' Commuter (left side)
 U --> UC1
 U --> UC2
 U --> UC3
@@ -41,15 +41,15 @@ U --> UC9
 UC4 ..> UC3 : <<include>>
 UC6 ..> UC4 : <<extend>>
 
-' Administrator
-A --> UC10
-A --> UC11
-A --> UC12
-A --> UC13
+' Administrator (right side) — arrow points from admin into the use cases
+UC10 <-- A
+UC11 <-- A
+UC12 <-- A
+UC13 <-- A
 
-' AI provider
-G <-- UC7
-G <-- UC8
-G <-- UC9
-G <-- UC13
+' Gemini AI provides / powers the AI use cases (arrow points into the use cases)
+G --> UC7
+G --> UC8
+G --> UC9
+G --> UC13
 @enduml
