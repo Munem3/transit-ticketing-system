@@ -64,8 +64,16 @@
         <mxCell id="ea13" style="endArrow=open;endFill=0;html=1;strokeColor=#94A3B8;" edge="1" parent="1" source="aa" target="u13"><mxGeometry relative="1" as="geometry" /></mxCell>
 
         <!-- include / extend -->
-        <mxCell id="einc" value="&#171;include&#187;" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#475569;fontSize=11;fontStyle=2;fontColor=#475569;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="u4" target="u3"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="eext" value="&#171;extend&#187;" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#475569;fontSize=11;fontStyle=2;fontColor=#475569;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="u5" target="u4"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="einc" value="&#171;include&#187;" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#475569;fontSize=11;fontStyle=2;fontColor=#475569;labelBackgroundColor=#F8FAFC;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="u4" target="u3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="662" y="228" /><mxPoint x="662" y="182" /></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eext" value="&#171;extend&#187;" style="endArrow=open;endFill=0;dashed=1;html=1;strokeColor=#475569;fontSize=11;fontStyle=2;fontColor=#475569;labelBackgroundColor=#F8FAFC;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="u5" target="u4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="690" y="274" /><mxPoint x="690" y="228" /></Array>
+          </mxGeometry>
+        </mxCell>
 
       </root>
     </mxGraphModel>
