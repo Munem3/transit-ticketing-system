@@ -3,26 +3,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TransitBD — Progress Presentation (Group-5)</title>
+    <title>TransitBD — Progress Presentation (Group-12)</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" id="theme" />
     <style>
       :root {
-        --brand: #1b6ff5;
-        --brand-dark: #1458e1;
-        --ink: #0b1220;
+        --brand: #0d9488;       /* teal-600 */
+        --brand-dark: #0f766e;  /* teal-700 */
+        --accent: #f59e0b;      /* amber-500 */
+        --ink: #0f172a;
         --muted: #64748b;
       }
       .reveal { font-family: "Segoe UI", system-ui, sans-serif; color: var(--ink); font-size: 30px; }
-      .reveal h1, .reveal h2, .reveal h3 { color: var(--brand-dark); text-transform: none; letter-spacing: 0; font-weight: 800; }
+      .reveal h1, .reveal h2, .reveal h3 { font-family: Georgia, "Times New Roman", serif; color: var(--brand-dark); text-transform: none; letter-spacing: -0.01em; font-weight: 800; }
       .reveal h1 { font-size: 2.0em; }
-      .reveal h2 { font-size: 1.35em; margin-bottom: 0.4em; }
+      .reveal h2 { font-size: 1.35em; margin-bottom: 0.55em; border-left: 6px solid var(--accent); padding-left: 16px; line-height: 1.15; }
       .reveal section { text-align: left; }
       .reveal .center { text-align: center; }
       .reveal ul { display: block; margin-left: 1em; }
       .reveal li { margin: 6px 0; line-height: 1.35; }
       .reveal small { color: var(--muted); }
-      .pill { display:inline-block; background:#eef4ff; color:var(--brand-dark); border-radius:999px; padding:4px 14px; font-size:0.5em; font-weight:700; }
+      .pill { display:inline-block; background:#ccfbf1; color:var(--brand-dark); border-radius:999px; padding:4px 14px; font-size:0.5em; font-weight:700; }
       .cols { display:grid; grid-template-columns:1fr 1fr; gap:26px; }
       .cols3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; }
       .card { background:#f8fafc; border:1px solid #e2e8f0; border-radius:14px; padding:16px 18px; }
@@ -37,10 +38,10 @@
       table.gantt td, table.gantt th { padding:6px 8px; border-bottom:1px solid #e2e8f0; vertical-align:middle; }
       table.gantt th { color:var(--muted); font-weight:600; }
       .bar { height:16px; border-radius:6px; }
-      .b0 { background:#0e9f6e; } .b1 { background:#1b6ff5; } .b2 { background:#7c3aed; } .b3 { background:#f59e0b; }
+      .b0 { background:#0e9f6e; } .b1 { background:#0d9488; } .b2 { background:#0891b2; } .b3 { background:#f59e0b; }
       .ledger { font-size:0.55em; }
       .flow { display:flex; align-items:center; gap:6px; flex-wrap:wrap; font-size:0.5em; }
-      .flow span { background:#eef4ff; border:1px solid #cfe0ff; color:var(--brand-dark); border-radius:8px; padding:5px 9px; font-weight:600; }
+      .flow span { background:#ccfbf1; border:1px solid #5eead4; color:var(--brand-dark); border-radius:8px; padding:5px 9px; font-weight:600; }
       .flow b { color:var(--muted); }
       .reveal a { color: var(--brand); }
       .shotgrid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
@@ -55,13 +56,13 @@
       <div class="slides">
 
         <!-- 1. TITLE -->
-        <section data-background-gradient="linear-gradient(135deg,#1b6ff5,#193f8f)">
+        <section data-background-gradient="linear-gradient(135deg,#0f766e,#0f172a)">
           <div class="center" style="color:#fff;">
-            <span class="pill" style="background:rgba(255,255,255,.2);color:#fff;">Group-5 · Progress Presentation</span>
+            <span class="pill" style="background:rgba(255,255,255,.2);color:#fff;">Group-12 · Progress Presentation</span>
             <h1 style="color:#fff; margin-top:24px;">TransitBD</h1>
-            <h3 style="color:#dbeafe; font-weight:600;">Mass Transport Ticketing System<br/>with Intelligent Transit Analytics</h3>
-            <p style="color:#dbeafe; margin-top:30px; font-size:0.7em;">Bus · Intercity Train · Metro — one platform</p>
-            <p style="color:#bfdbfe; font-size:0.55em; margin-top:40px;">Presented 3rd August 2026 &nbsp;•&nbsp; github.com/Munem3/transit-ticketing-system</p>
+            <h3 style="color:#99f6e4; font-weight:600;">Mass Transport Ticketing System<br/>with Intelligent Transit Analytics</h3>
+            <p style="color:#99f6e4; margin-top:30px; font-size:0.7em;">Bus · Intercity Train · Metro — one platform</p>
+            <p style="color:#5eead4; font-size:0.55em; margin-top:40px;">Presented 3rd August 2026 &nbsp;•&nbsp; github.com/Munem3/transit-ticketing-system</p>
           </div>
         </section>
 
@@ -348,12 +349,12 @@
         </section>
 
         <!-- 11. THANK YOU -->
-        <section data-background-gradient="linear-gradient(135deg,#1b6ff5,#193f8f)">
+        <section data-background-gradient="linear-gradient(135deg,#0f766e,#0f172a)">
           <div class="center" style="color:#fff;">
             <h1 style="color:#fff;">Thank you</h1>
-            <p style="color:#dbeafe; font-size:0.8em;">TransitBD — Group-5</p>
-            <p style="color:#bfdbfe; font-size:0.6em; margin-top:24px;">Questions &amp; Answers</p>
-            <p style="color:#bfdbfe; font-size:0.5em; margin-top:40px;">github.com/Munem3/transit-ticketing-system</p>
+            <p style="color:#99f6e4; font-size:0.8em;">TransitBD — Group-12</p>
+            <p style="color:#5eead4; font-size:0.6em; margin-top:24px;">Questions &amp; Answers</p>
+            <p style="color:#5eead4; font-size:0.5em; margin-top:40px;">github.com/Munem3/transit-ticketing-system</p>
           </div>
         </section>
 

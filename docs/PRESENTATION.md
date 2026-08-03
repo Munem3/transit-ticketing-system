@@ -11,7 +11,7 @@ size: 16:9
 # TransitBD
 ## Mass Transport Ticketing System with Intelligent Transit Analytics
 
-**Group-5** · Progress Presentation · 3 August 2026
+**Group-12** · Progress Presentation · 3 August 2026
 Bus · Intercity Train · Metro — one platform
 `github.com/Munem3/transit-ticketing-system`
 
@@ -145,7 +145,7 @@ Admin: `admin@transit.bd / admin123` · User: `rahim@example.com / password123`
 
 # Thank you
 
-**TransitBD — Group-5**
+**TransitBD — Group-12**
 Questions & Answers
 
 `github.com/Munem3/transit-ticketing-system`
