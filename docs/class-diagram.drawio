@@ -1,0 +1,78 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="Class Diagram" id="class-diagram">
+    <mxGraphModel dx="1300" dy="900" grid="0" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="640" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Class Diagram — TransitBD Ticketing System" style="text;html=1;fontSize=16;fontStyle=1;fontColor=#0F766E;align=left;" vertex="1" parent="1">
+          <mxGeometry x="30" y="10" width="560" height="26" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cUser" value="&lt;b&gt;User&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;- id: String&lt;br&gt;- name: String&lt;br&gt;- email: String&lt;br&gt;- phone: String&lt;br&gt;- passwordHash: String&lt;br&gt;- role: Role&lt;br&gt;- balance: Float&lt;hr size=&quot;1&quot;&gt;+ register()&lt;br&gt;+ login()&lt;br&gt;+ topUp(amount)" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#EEF2FF;strokeColor=#0F766E;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="30" y="60" width="220" height="210" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cRoute" value="&lt;b&gt;Route&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;- id: String&lt;br&gt;- code: String&lt;br&gt;- name: String&lt;br&gt;- mode: TransportMode&lt;br&gt;- origin: String&lt;br&gt;- destination: String&lt;br&gt;- baseFare: Float&lt;hr size=&quot;1&quot;&gt;+ listTrips()" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#EEF2FF;strokeColor=#0F766E;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="330" y="60" width="220" height="190" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cTrip" value="&lt;b&gt;Trip&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;- id: String&lt;br&gt;- departure: DateTime&lt;br&gt;- arrival: DateTime&lt;br&gt;- vehicleLabel: String&lt;br&gt;- fareMultiplier: Float&lt;br&gt;- active: Boolean&lt;hr size=&quot;1&quot;&gt;+ availableSeats()&lt;br&gt;+ fare()" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#EEF2FF;strokeColor=#0F766E;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="640" y="60" width="240" height="190" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cTxn" value="&lt;b&gt;Transaction&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;- id: String&lt;br&gt;- type: TxnType&lt;br&gt;- provider: WalletProvider&lt;br&gt;- amount: Float&lt;br&gt;- balanceAfter: Float&lt;br&gt;- createdAt: DateTime" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#EEF2FF;strokeColor=#0F766E;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="30" y="360" width="250" height="150" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cBooking" value="&lt;b&gt;Booking&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;- id: String&lt;br&gt;- reference: String&lt;br&gt;- status: BookingStatus&lt;br&gt;- totalFare: Float&lt;br&gt;- holdExpiresAt: DateTime&lt;br&gt;- qrPayload: String&lt;br&gt;- createdAt: DateTime&lt;hr size=&quot;1&quot;&gt;+ holdSeats()&lt;br&gt;+ confirm(provider)&lt;br&gt;+ cancel()&lt;br&gt;+ generateQR()" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#D5F5E3;strokeColor=#0D9488;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="330" y="330" width="270" height="240" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cSeat" value="&lt;b&gt;Seat&lt;/b&gt;&lt;hr size=&quot;1&quot;&gt;- id: String&lt;br&gt;- label: String&lt;br&gt;- compartment: String&lt;br&gt;- status: SeatStatus&lt;br&gt;- holdExpiresAt: DateTime&lt;hr size=&quot;1&quot;&gt;+ hold()&lt;br&gt;+ release()&lt;br&gt;+ book()" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fillColor=#EEF2FF;strokeColor=#0F766E;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="670" y="330" width="230" height="185" as="geometry" />
+        </mxCell>
+
+        <!-- associations with multiplicities -->
+        <mxCell id="rUB" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;strokeColor=#334155;" edge="1" parent="1" source="cUser" target="cBooking">
+          <mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rUBs" value="1" style="edgeLabel;html=1;fontSize=10;" connectable="0" vertex="1" parent="rUB"><mxGeometry x="-0.85" relative="1" as="geometry" /></mxCell>
+        <mxCell id="rUBt" value="0..*" style="edgeLabel;html=1;fontSize=10;" connectable="0" vertex="1" parent="rUB"><mxGeometry x="0.85" relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="rUT" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;strokeColor=#334155;" edge="1" parent="1" source="cUser" target="cTxn">
+          <mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rUTs" value="1" style="edgeLabel;html=1;fontSize=10;" connectable="0" vertex="1" parent="rUT"><mxGeometry x="-0.85" relative="1" as="geometry" /></mxCell>
+        <mxCell id="rUTt" value="0..*" style="edgeLabel;html=1;fontSize=10;" connectable="0" vertex="1" parent="rUT"><mxGeometry x="0.85" relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="rRT" value="offers" style="endArrow=none;startArrow=diamondThin;startFill=1;html=1;edgeStyle=orthogonalEdgeStyle;strokeColor=#334155;fontSize=10;" edge="1" parent="1" source="cRoute" target="cTrip">
+          <mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rRTs" value="1" style="edgeLabel;html=1;fontSize=10;" connectable="0" vertex="1" parent="rRT"><mxGeometry x="-0.85" relative="1" as="geometry" /></mxCell>
+        <mxCell id="rRTt" value="1..*" style="edgeLabel;html=1;fontSize=10;" connectable="0" vertex="1" parent="rRT"><mxGeometry x="0.85" relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="rTS" value="has" style="endArrow=none;startArrow=diamondThin;startFill=1;html=1;edgeStyle=orthogonalEdgeStyle;strokeColor=#334155;fontSize=10;" edge="1" parent="1" source="cTrip" target="cSeat">
+          <mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rTSs" value="1" style="edgeLabel;html=1;fontSize=10;" connectable="0" vertex="1" parent="rTS"><mxGeometry x="-0.85" relative="1" as="geometry" /></mxCell>
+        <mxCell id="rTSt" value="1..*" style="edgeLabel;html=1;fontSize=10;" connectable="0" vertex="1" parent="rTS"><mxGeometry x="0.85" relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="rTB" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;strokeColor=#334155;" edge="1" parent="1" source="cTrip" target="cBooking">
+          <mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rTBs" value="1" style="edgeLabel;html=1;fontSize=10;" connectable="0" vertex="1" parent="rTB"><mxGeometry x="-0.85" relative="1" as="geometry" /></mxCell>
+        <mxCell id="rTBt" value="0..*" style="edgeLabel;html=1;fontSize=10;" connectable="0" vertex="1" parent="rTB"><mxGeometry x="0.85" relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="rBS" value="reserves" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;strokeColor=#334155;fontSize=10;" edge="1" parent="1" source="cBooking" target="cSeat">
+          <mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rBSs" value="1" style="edgeLabel;html=1;fontSize=10;" connectable="0" vertex="1" parent="rBS"><mxGeometry x="-0.85" relative="1" as="geometry" /></mxCell>
+        <mxCell id="rBSt" value="1..*" style="edgeLabel;html=1;fontSize=10;" connectable="0" vertex="1" parent="rBS"><mxGeometry x="0.85" relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="rBT" style="endArrow=none;html=1;edgeStyle=orthogonalEdgeStyle;strokeColor=#334155;" edge="1" parent="1" source="cBooking" target="cTxn">
+          <mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="rBTs" value="1" style="edgeLabel;html=1;fontSize=10;" connectable="0" vertex="1" parent="rBT"><mxGeometry x="-0.85" relative="1" as="geometry" /></mxCell>
+        <mxCell id="rBTt" value="0..*" style="edgeLabel;html=1;fontSize=10;" connectable="0" vertex="1" parent="rBT"><mxGeometry x="0.85" relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="enote" value="Enums:  Role {USER, ADMIN}   ·   TransportMode {BUS, TRAIN, METRO}   ·   SeatStatus {AVAILABLE, HELD, BOOKED}   ·   BookingStatus {PENDING, CONFIRMED, CANCELLED, EXPIRED}   ·   TxnType {TOPUP, PURCHASE, REFUND}   ·   WalletProvider {BKASH, ROCKET, CARD}" style="shape=note;whiteSpace=wrap;html=1;size=12;fillColor=#FFF7E6;strokeColor=#F59E0B;fontSize=10;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="30" y="540" width="560" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

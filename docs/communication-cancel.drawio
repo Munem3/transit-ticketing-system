@@ -1,0 +1,42 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="Communication - Cancel and Refund" id="comm-cancel">
+    <mxGraphModel dx="1300" dy="800" grid="0" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1220" pageHeight="420" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Communication Diagram — Cancel &amp; Refund" style="text;html=1;fontSize=16;fontStyle=1;fontColor=#0F766E;align=left;" vertex="1" parent="1">
+          <mxGeometry x="40" y="14" width="560" height="26" as="geometry" />
+        </mxCell>
+
+        <!-- Objects -->
+        <mxCell id="oC" value="&lt;u&gt;: Commuter&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#0F172A;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="150" width="150" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="oUI" value="&lt;u&gt;ui : Tickets UI&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#0F766E;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="150" width="170" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="oS" value="&lt;u&gt;svc : cancelBooking()&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#D5F5E3;strokeColor=#0D9488;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="150" width="200" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="oDB" value="&lt;u&gt;db : Database&lt;/u&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#0F766E;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="980" y="150" width="160" height="54" as="geometry" />
+        </mxCell>
+
+        <!-- Forward messages (top halves) -->
+        <mxCell id="e1" value="1: tap Cancel" style="endArrow=block;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;fontSize=11;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" edge="1" parent="1" source="oC" target="oUI"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e2" value="2: cancelBooking(bookingId)" style="endArrow=block;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;fontSize=11;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" edge="1" parent="1" source="oUI" target="oS"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e3" value="3: release seats (AVAILABLE)&#10;4: set booking CANCELLED&#10;5: refund fare + record REFUND txn" style="endArrow=block;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;fontSize=11;align=center;verticalAlign=bottom;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" edge="1" parent="1" source="oS" target="oDB"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Return messages (bottom halves) -->
+        <mxCell id="e6" value="6: committed" style="endArrow=block;html=1;rounded=0;dashed=1;edgeStyle=orthogonalEdgeStyle;fontSize=11;exitX=0;exitY=0.7;entryX=1;entryY=0.7;" edge="1" parent="1" source="oDB" target="oS"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e7" value="7: cancelled &amp; refunded" style="endArrow=block;html=1;rounded=0;dashed=1;edgeStyle=orthogonalEdgeStyle;fontSize=11;exitX=0;exitY=0.7;entryX=1;entryY=0.7;" edge="1" parent="1" source="oS" target="oUI"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e8" value="8: show updated tickets &amp; balance" style="endArrow=block;html=1;rounded=0;dashed=1;edgeStyle=orthogonalEdgeStyle;fontSize=11;exitX=0;exitY=0.7;entryX=1;entryY=0.7;" edge="1" parent="1" source="oUI" target="oC"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="note" value="Refund (messages 5–6) runs only when the booking was CONFIRMED; a PENDING hold is simply released. All DB updates run in one transaction." style="shape=note;whiteSpace=wrap;html=1;size=12;fillColor=#FFF7E6;strokeColor=#F59E0B;fontSize=11;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="40" y="270" width="560" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

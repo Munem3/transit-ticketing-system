@@ -1,0 +1,44 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="Sequence - Route Planner" id="seq-planner">
+    <mxGraphModel dx="1400" dy="900" grid="0" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1300" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Sequence Diagram — AI Multi-Modal Route Planning" style="text;html=1;fontSize=16;fontStyle=1;fontColor=#0F766E;align=left;" vertex="1" parent="1">
+          <mxGeometry x="40" y="12" width="640" height="26" as="geometry" />
+        </mxCell>
+
+        <mxCell id="llC" value="Commuter" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=44;fillColor=#EEF2FF;strokeColor=#0F172A;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="46" width="150" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="llUI" value="AI Assistant UI" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=44;fillColor=#EEF2FF;strokeColor=#0F766E;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="265" y="46" width="150" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="llAPI" value="Planner API Route" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=44;fillColor=#D5F5E3;strokeColor=#0D9488;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="515" y="46" width="150" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="llDB" value="Database (Prisma)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=44;fillColor=#EEF2FF;strokeColor=#0F766E;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="765" y="46" width="150" height="560" as="geometry" />
+        </mxCell>
+        <mxCell id="llG" value="Gemini AI (LLM)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=44;fillColor=#D5F5E3;strokeColor=#0D9488;fontStyle=1;fontColor=#0D9488;" vertex="1" parent="1">
+          <mxGeometry x="1015" y="46" width="150" height="560" as="geometry" />
+        </mxCell>
+
+        <mxCell id="m1" value="1: enter From, To, time" style="html=1;verticalAlign=bottom;endArrow=block;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="95" y="130" as="sourcePoint" /><mxPoint x="340" y="130" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m2" value="2: POST /api/ai/planner {from,to,when}" style="html=1;verticalAlign=bottom;endArrow=block;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="340" y="176" as="sourcePoint" /><mxPoint x="590" y="176" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m3" value="3: fetch active routes (network)" style="html=1;verticalAlign=bottom;endArrow=block;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="590" y="222" as="sourcePoint" /><mxPoint x="840" y="222" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m4" value="4: route list" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="840" y="268" as="sourcePoint" /><mxPoint x="590" y="268" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m5" value="5: prompt(network + journey)" style="html=1;verticalAlign=bottom;endArrow=block;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="590" y="314" as="sourcePoint" /><mxPoint x="1090" y="314" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m6" value="6: JSON plan (legs, time, fare)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="1090" y="360" as="sourcePoint" /><mxPoint x="590" y="360" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m7" value="7: parse &amp; validate JSON" style="html=1;verticalAlign=bottom;endArrow=block;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="590" y="398" as="sourcePoint" /><mxPoint x="590" y="420" as="targetPoint" /><Array as="points"><mxPoint x="665" y="398" /><mxPoint x="665" y="420" /></Array></mxGeometry></mxCell>
+        <mxCell id="m8" value="8: plan {legs, minutes, fare}" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="590" y="444" as="sourcePoint" /><mxPoint x="340" y="444" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m9" value="9: show optimal multi-modal route" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="340" y="490" as="sourcePoint" /><mxPoint x="95" y="490" as="targetPoint" /></mxGeometry></mxCell>
+
+        <mxCell id="note" value="Fallback: if GEMINI_API_KEY is missing or the call fails, the API builds a heuristic plan from the DB route network — the flow is identical." style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#FFF7E6;strokeColor=#F59E0B;fontSize=11;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="20" y="520" width="520" height="66" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

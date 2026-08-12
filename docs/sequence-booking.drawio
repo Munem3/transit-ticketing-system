@@ -1,0 +1,51 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="Sequence - Book and Pay" id="seq-booking">
+    <mxGraphModel dx="1400" dy="900" grid="0" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1240" pageHeight="860" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Sequence Diagram — Book &amp; Pay for Ticket" style="text;html=1;fontSize=16;fontStyle=1;fontColor=#0F766E;align=left;" vertex="1" parent="1">
+          <mxGeometry x="40" y="12" width="600" height="26" as="geometry" />
+        </mxCell>
+
+        <!-- Lifelines -->
+        <mxCell id="llC" value="Commuter" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=44;fillColor=#EEF2FF;strokeColor=#0F172A;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="46" width="150" height="760" as="geometry" />
+        </mxCell>
+        <mxCell id="llUI" value="Web UI (Next.js)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=44;fillColor=#EEF2FF;strokeColor=#0F766E;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="265" y="46" width="150" height="760" as="geometry" />
+        </mxCell>
+        <mxCell id="llS" value="Booking Server Action" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=44;fillColor=#D5F5E3;strokeColor=#0D9488;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="515" y="46" width="150" height="760" as="geometry" />
+        </mxCell>
+        <mxCell id="llDB" value="Database (Prisma)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=44;fillColor=#EEF2FF;strokeColor=#0F766E;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="765" y="46" width="150" height="760" as="geometry" />
+        </mxCell>
+        <mxCell id="llW" value="Mock Wallet" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=44;fillColor=#EEF2FF;strokeColor=#0F766E;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1015" y="46" width="150" height="760" as="geometry" />
+        </mxCell>
+
+        <!-- Messages -->
+        <mxCell id="m1" value="1: select seats &amp; tap Hold" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="95" y="130" as="sourcePoint" /><mxPoint x="340" y="130" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m2" value="2: holdSeats(tripId, seatIds)" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="340" y="172" as="sourcePoint" /><mxPoint x="590" y="172" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m3" value="3: check availability &amp; create hold (PENDING)" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="590" y="214" as="sourcePoint" /><mxPoint x="840" y="214" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m4" value="4: reference + holdExpiresAt" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;rounded=0;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="840" y="256" as="sourcePoint" /><mxPoint x="590" y="256" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m5" value="5: seats held (start 5-min timer)" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;rounded=0;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="590" y="298" as="sourcePoint" /><mxPoint x="340" y="298" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m6" value="6: choose wallet &amp; pay (bKash/Rocket/Card)" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="95" y="340" as="sourcePoint" /><mxPoint x="340" y="340" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m7" value="7: confirmBooking(bookingId, provider)" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="340" y="382" as="sourcePoint" /><mxPoint x="590" y="382" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m8" value="8: verify balance &#8805; fare" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="590" y="424" as="sourcePoint" /><mxPoint x="840" y="424" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m9" value="9: charge fare" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="590" y="466" as="sourcePoint" /><mxPoint x="1090" y="466" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m10" value="10: payment ok" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;rounded=0;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="1090" y="508" as="sourcePoint" /><mxPoint x="590" y="508" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m11" value="11: deduct balance, CONFIRM booking, seats BOOKED, record txn" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="590" y="550" as="sourcePoint" /><mxPoint x="840" y="550" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m12" value="12: generate QR payload" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="590" y="588" as="sourcePoint" /><mxPoint x="590" y="610" as="targetPoint" /><Array as="points"><mxPoint x="665" y="588" /><mxPoint x="665" y="610" /></Array></mxGeometry></mxCell>
+        <mxCell id="m13" value="13: confirmed + QR ticket" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;rounded=0;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="590" y="634" as="sourcePoint" /><mxPoint x="340" y="634" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="m14" value="14: display QR ticket" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;rounded=0;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="340" y="676" as="sourcePoint" /><mxPoint x="95" y="676" as="targetPoint" /></mxGeometry></mxCell>
+
+        <mxCell id="note" value="Alt flow: if the 5-min hold expires or balance &lt; fare, the booking is auto-cancelled (EXPIRED) and the held seats are released." style="shape=note;whiteSpace=wrap;html=1;size=14;fillColor=#FFF7E6;strokeColor=#F59E0B;fontSize=11;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="20" y="716" width="500" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
