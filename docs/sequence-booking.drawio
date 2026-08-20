@@ -26,6 +26,15 @@
           <mxGeometry x="1015" y="46" width="150" height="760" as="geometry" />
         </mxCell>
 
+        <!-- Activation bars -->
+        <mxCell id="acUI1" value="" style="rounded=0;html=1;fillColor=#EAF6F3;strokeColor=#0F766E;" vertex="1" parent="1"><mxGeometry x="335" y="172" width="10" height="126" as="geometry" /></mxCell>
+        <mxCell id="acUI2" value="" style="rounded=0;html=1;fillColor=#EAF6F3;strokeColor=#0F766E;" vertex="1" parent="1"><mxGeometry x="335" y="382" width="10" height="294" as="geometry" /></mxCell>
+        <mxCell id="acS1" value="" style="rounded=0;html=1;fillColor=#EAF6F3;strokeColor=#0F766E;" vertex="1" parent="1"><mxGeometry x="585" y="172" width="10" height="128" as="geometry" /></mxCell>
+        <mxCell id="acS2" value="" style="rounded=0;html=1;fillColor=#EAF6F3;strokeColor=#0F766E;" vertex="1" parent="1"><mxGeometry x="585" y="382" width="10" height="266" as="geometry" /></mxCell>
+        <mxCell id="acDB1" value="" style="rounded=0;html=1;fillColor=#EAF6F3;strokeColor=#0F766E;" vertex="1" parent="1"><mxGeometry x="835" y="214" width="10" height="42" as="geometry" /></mxCell>
+        <mxCell id="acDB2" value="" style="rounded=0;html=1;fillColor=#EAF6F3;strokeColor=#0F766E;" vertex="1" parent="1"><mxGeometry x="835" y="424" width="10" height="136" as="geometry" /></mxCell>
+        <mxCell id="acW1" value="" style="rounded=0;html=1;fillColor=#EAF6F3;strokeColor=#0F766E;" vertex="1" parent="1"><mxGeometry x="1085" y="466" width="10" height="42" as="geometry" /></mxCell>
+
         <!-- Messages -->
         <mxCell id="m1" value="1: select seats &amp; tap Hold" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="95" y="130" as="sourcePoint" /><mxPoint x="340" y="130" as="targetPoint" /></mxGeometry></mxCell>
         <mxCell id="m2" value="2: holdSeats(tripId, seatIds)" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="340" y="172" as="sourcePoint" /><mxPoint x="590" y="172" as="targetPoint" /></mxGeometry></mxCell>

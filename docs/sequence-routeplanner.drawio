@@ -25,6 +25,11 @@
           <mxGeometry x="1015" y="46" width="150" height="560" as="geometry" />
         </mxCell>
 
+        <mxCell id="acUI" value="" style="rounded=0;html=1;fillColor=#EAF6F3;strokeColor=#0F766E;" vertex="1" parent="1"><mxGeometry x="335" y="176" width="10" height="314" as="geometry" /></mxCell>
+        <mxCell id="acAPI" value="" style="rounded=0;html=1;fillColor=#EAF6F3;strokeColor=#0F766E;" vertex="1" parent="1"><mxGeometry x="585" y="176" width="10" height="276" as="geometry" /></mxCell>
+        <mxCell id="acDB" value="" style="rounded=0;html=1;fillColor=#EAF6F3;strokeColor=#0F766E;" vertex="1" parent="1"><mxGeometry x="835" y="222" width="10" height="46" as="geometry" /></mxCell>
+        <mxCell id="acG" value="" style="rounded=0;html=1;fillColor=#EAF6F3;strokeColor=#0F766E;" vertex="1" parent="1"><mxGeometry x="1085" y="314" width="10" height="46" as="geometry" /></mxCell>
+
         <mxCell id="m1" value="1: enter From, To, time" style="html=1;verticalAlign=bottom;endArrow=block;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="95" y="130" as="sourcePoint" /><mxPoint x="340" y="130" as="targetPoint" /></mxGeometry></mxCell>
         <mxCell id="m2" value="2: POST /api/ai/planner {from,to,when}" style="html=1;verticalAlign=bottom;endArrow=block;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="340" y="176" as="sourcePoint" /><mxPoint x="590" y="176" as="targetPoint" /></mxGeometry></mxCell>
         <mxCell id="m3" value="3: fetch active routes (network)" style="html=1;verticalAlign=bottom;endArrow=block;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="590" y="222" as="sourcePoint" /><mxPoint x="840" y="222" as="targetPoint" /></mxGeometry></mxCell>
