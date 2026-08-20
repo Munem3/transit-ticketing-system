@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>SRS — TransitBD</title>
+<style>
+  @page { size: A4; margin: 22mm 18mm; }
+  * { box-sizing: border-box; }
+  body { font-family: Georgia, "Times New Roman", serif; color: #111827; font-size: 11.5pt; line-height: 1.5; margin: 0; }
+  h1, h2, h3, h4 { font-family: Georgia, serif; color: #0f172a; }
+  h1 { font-size: 20pt; }
+  h2 { font-size: 15pt; border-bottom: 2px solid #0f766e; padding-bottom: 3px; margin-top: 26px; color: #0f766e; }
+  h3 { font-size: 12.5pt; margin-top: 16px; color: #0f172a; }
+  h4 { font-size: 11.5pt; margin: 10px 0 4px; }
+  p { margin: 6px 0; }
+  ul, ol { margin: 6px 0 6px 18px; }
+  li { margin: 3px 0; }
+  code { font-family: Consolas, monospace; background: #f1f5f9; padding: 0 3px; border-radius: 3px; font-size: 10.5pt; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 10.5pt; }
+  th, td { border: 1px solid #cbd5e1; padding: 5px 8px; text-align: left; vertical-align: top; }
+  th { background: #ecfdf5; color: #0f766e; }
+  .req { font-weight: bold; color: #0f766e; }
+  .titlepage { height: 245mm; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; page-break-after: always; }
+  .titlepage .band { color: #0f766e; letter-spacing: 2px; font-size: 12pt; text-transform: uppercase; }
+  .titlepage h1 { font-size: 30pt; margin: 10px 0; }
+  .sub { color: #475569; font-size: 13pt; }
+  .meta { margin-top: 40px; color: #334155; font-size: 12pt; }
+  .section { page-break-before: always; }
+  .muted { color: #64748b; }
+  a { color: #0f766e; }
+</style>
+</head>
+<body>
+
+  <div class="titlepage">
+    <div class="band">Software Requirements Specification</div>
+    <h1>TransitBD</h1>
+    <div class="sub">Mass Transport Ticketing System<br/>with Intelligent Transit Analytics</div>
+    <div class="meta">
+      Version 1.0 &nbsp;·&nbsp; Approved<br/><br/>
+      Prepared by <b>Group&#8209;12</b><br/>
+      Course Project &mdash; Software Engineering<br/>
+      3 August 2026
+    </div>
+    <div class="muted" style="margin-top:50px;font-size:10pt;">Repository: github.com/Munem3/transit-ticketing-system</div>
+  </div>
+
+  <!-- Revision history -->
+  <h2>Revision History</h2>
+  <table>
+    <tr><th>Name</th><th>Date</th><th>Reason for Changes</th><th>Version</th></tr>
+    <tr><td>Group-12</td><td>2026-08-03</td><td>Initial SRS covering the full TransitBD system.</td><td>1.0</td></tr>
+  </table>
+
+  <!-- 1 -->
+  <div class="section">
+  <h2>1. Introduction</h2>
+
+  <h3>1.1 Purpose</h3>
+  <p>This Software Requirements Specification (SRS) defines the requirements for <b>TransitBD</b>, version 1.0 — a web-based mass transport ticketing platform with AI transit analytics for Bangladesh. It covers the complete system: commuter ticketing across bus, intercity train, and metro; a mock digital wallet; QR ticketing; three AI features; and an administrative control panel.</p>
+
+  <h3>1.2 Document Conventions</h3>
+  <ul>
+    <li>Functional requirements are tagged <code>REQ-n</code> and are uniquely numbered per feature.</li>
+    <li>Each feature is assigned a priority of <b>High</b>, <b>Medium</b>, or <b>Low</b>.</li>
+    <li>Priorities assigned to a feature are inherited by its detailed requirements unless stated otherwise.</li>
+    <li>Terms in <code>monospace</code> refer to code entities, API routes, or database fields.</li>
+  </ul>
+
+  <h3>1.3 Intended Audience and Reading Suggestions</h3>
+  <p>This document is intended for the development team, project supervisor/evaluators, testers, and future maintainers. Readers new to the project should read Section 1 (Introduction) and Section 2 (Overall Description) first, then Section 4 (System Features) for functional detail, and Section 5 for quality attributes. Evaluators may focus on Sections 2, 4, and Appendix B (Analysis Models).</p>
+
+  <h3>1.4 Product Scope</h3>
+  <p>TransitBD unifies ticketing across Dhaka Metro, intercity trains, and buses into one platform, giving commuters real-time seat availability, transparent fares, and AI-assisted journey planning, while giving transport authorities demand analytics and operational control. Objectives: reduce peak-hour friction, provide fare transparency, and enable data-driven fleet decisions. The system is a self-contained web application; payments and AI are simulated for this educational release.</p>
+
+  <h3>1.5 References</h3>
+  <ul>
+    <li>Project brief — "Mass Transport Ticketing System with Intelligent Transit Analytics", Group-12.</li>
+    <li>UML analysis models — <code>docs/UML-DIAGRAMS.md</code> (use case, sequence, communication, activity, class).</li>
+    <li>Detailed use case description — <code>docs/use-case-description.md</code>.</li>
+    <li>Next.js, Prisma, NextAuth.js, and Google Gemini API official documentation.</li>
+    <li>Source repository — https://github.com/Munem3/transit-ticketing-system</li>
+  </ul>
+  </div>
+
+  <!-- 2 -->
+  <div class="section">
+  <h2>2. Overall Description</h2>
+
+  <h3>2.1 Product Perspective</h3>
+  <p>TransitBD is a new, self-contained product (not a follow-on or replacement). It is a full-stack Next.js application in which the frontend, backend, and API layers share one codebase. The system integrates two external actors: the <b>Google Gemini</b> LLM (for AI features, with a heuristic fallback) and a <b>mock digital wallet</b> (bKash / Rocket / Card) that simulates payment. Major components:</p>
+  <ul>
+    <li><b>Web UI</b> (React/Next.js, Tailwind) — commuter and admin interfaces.</li>
+    <li><b>Application server</b> — Next.js Server Actions &amp; API Route Handlers.</li>
+    <li><b>Database</b> — Prisma ORM over SQLite (dev) / PostgreSQL (prod).</li>
+    <li><b>External services</b> — Gemini API; simulated wallet.</li>
+  </ul>
+
+  <h3>2.2 Product Functions</h3>
+  <ul>
+    <li>Register and authenticate securely.</li>
+    <li>Browse trips by mode with real-time seat/compartment availability.</li>
+    <li>Hold seats with an automatic 5-minute countdown, then pay from a wallet.</li>
+    <li>Issue instant QR-coded tickets; cancel with automatic refund.</li>
+    <li>AI peak-demand &amp; fare prediction, multi-modal route planning, and a support chatbot.</li>
+    <li>Administer schedules, fare grid, and the transaction ledger.</li>
+  </ul>
+
+  <h3>2.3 User Classes and Characteristics</h3>
+  <table>
+    <tr><th>User class</th><th>Characteristics &amp; privileges</th></tr>
+    <tr><td><b>Commuter</b> (primary)</td><td>Registered traveller; books, pays, manages tickets, uses AI assistant. Largest, most important class.</td></tr>
+    <tr><td><b>Administrator</b></td><td>Operator/staff; manages trips, fares, and views the ledger &amp; analytics. Elevated privileges.</td></tr>
+    <tr><td><b>Guest</b></td><td>Unauthenticated visitor; can view the landing page and register/log in.</td></tr>
+    <tr><td><b>Gemini AI</b> (external system)</td><td>Supporting actor invoked by the AI features; not a human user.</td></tr>
+  </table>
+
+  <h3>2.4 Operating Environment</h3>
+  <ul>
+    <li><b>Client:</b> any modern desktop or mobile web browser (Chrome, Edge, Firefox, Safari).</li>
+    <li><b>Server:</b> Node.js 18+ runtime; deployable on Vercel or any Node host.</li>
+    <li><b>Database:</b> SQLite for development; PostgreSQL/MySQL for production.</li>
+    <li><b>Network:</b> HTTPS; outbound access to the Gemini API when AI is enabled.</li>
+  </ul>
+
+  <h3>2.5 Design and Implementation Constraints</h3>
+  <ul>
+    <li>Implemented in <b>TypeScript</b> end-to-end using <b>Next.js 14 (App Router)</b>.</li>
+    <li>Data access via <b>Prisma ORM</b>; authentication via <b>NextAuth.js</b> (JWT) with bcrypt hashing.</li>
+    <li>AI features use the <b>Google Gemini API</b>; must degrade gracefully to heuristics without a key.</li>
+    <li>Payments are <b>simulated</b> (no real gateway) for this release.</li>
+    <li>SQLite does not support Prisma enums, so enumerated fields are stored as strings with TypeScript unions.</li>
+  </ul>
+
+  <h3>2.6 User Documentation</h3>
+  <ul>
+    <li><code>README.md</code> — setup and run instructions.</li>
+    <li>In-app guidance (labels, demo credentials, contextual messages).</li>
+    <li>This SRS and the UML analysis models.</li>
+  </ul>
+
+  <h3>2.7 Assumptions and Dependencies</h3>
+  <ul>
+    <li>Users have internet access and a modern browser.</li>
+    <li>The Gemini API is reachable when configured; otherwise heuristic fallbacks are used.</li>
+    <li>Wallet balances are demo values; no real financial transactions occur.</li>
+    <li>Seed data (routes, trips, seats) is present for demonstration.</li>
+  </ul>
+  </div>
+
+  <!-- 3 -->
+  <div class="section">
+  <h2>3. External Interface Requirements</h2>
+
+  <h3>3.1 User Interfaces</h3>
+  <p>Responsive, mobile-first web pages with a consistent top navigation bar (Book, My Tickets, Wallet, AI Assistant, and Admin for admins). Key screens: landing, register/login, dashboard, trip browser, interactive seat map with countdown, wallet + ledger, QR ticket, AI assistant (3 tabs), and admin control panel. Errors are shown inline with clear messages (e.g., "seat just taken", "insufficient balance").</p>
+
+  <h3>3.2 Hardware Interfaces</h3>
+  <p>No special hardware is required. The system runs on standard client devices. Conceptually, a gate-side QR scanner could read a ticket's QR code, but scanning hardware is out of scope for this release.</p>
+
+  <h3>3.3 Software Interfaces</h3>
+  <table>
+    <tr><th>Interface</th><th>Purpose</th></tr>
+    <tr><td>Prisma ORM &rarr; SQLite/PostgreSQL</td><td>Persist users, routes, trips, seats, bookings, transactions.</td></tr>
+    <tr><td>NextAuth.js</td><td>Credential authentication; issues JWT session tokens.</td></tr>
+    <tr><td>Google Gemini API</td><td>Natural-language generation for the AI features (JSON &amp; text).</td></tr>
+    <tr><td><code>qrcode</code> library</td><td>Generate QR-code data URLs for confirmed tickets.</td></tr>
+  </table>
+
+  <h3>3.4 Communications Interfaces</h3>
+  <ul>
+    <li>All traffic over <b>HTTPS</b>.</li>
+    <li>Client–server data exchanged as <b>JSON</b> over HTTP (API routes) and via Server Actions.</li>
+    <li>Sessions carried by signed <b>JWT</b>; passwords never transmitted or stored in plaintext.</li>
+  </ul>
+  </div>
+
+  <!-- 4 -->
+  <div class="section">
+  <h2>4. System Features</h2>
+
+  <h3>4.1 Authentication &amp; Account Management</h3>
+  <h4>4.1.1 Description and Priority</h4>
+  <p><b>Priority: High.</b> Secure registration and login; each account has a role and a wallet balance.</p>
+  <h4>4.1.2 Stimulus/Response</h4>
+  <p>User submits registration/login form &rarr; system validates, hashes/verifies password, creates a session, and redirects to the dashboard.</p>
+  <h4>4.1.3 Functional Requirements</h4>
+  <ul>
+    <li><span class="req">REQ-1:</span> The system shall let a visitor register with name, email, and password (min 6 chars); duplicate emails are rejected.</li>
+    <li><span class="req">REQ-2:</span> The system shall store passwords using bcrypt hashing only.</li>
+    <li><span class="req">REQ-3:</span> The system shall authenticate users via NextAuth credentials and issue a JWT carrying user id and role.</li>
+    <li><span class="req">REQ-4:</span> New accounts shall receive a demo wallet balance recorded as an opening transaction.</li>
+  </ul>
+
+  <h3>4.2 Trip Search &amp; Real-time Seat Booking</h3>
+  <h4>4.2.1 Description and Priority</h4>
+  <p><b>Priority: High.</b> Browse trips by mode and reserve seats with a hold timer.</p>
+  <h4>4.2.2 Stimulus/Response</h4>
+  <p>User filters trips &rarr; system lists availability and fares; user selects seats and holds them &rarr; system creates a pending booking with a countdown.</p>
+  <h4>4.2.3 Functional Requirements</h4>
+  <ul>
+    <li><span class="req">REQ-5:</span> The system shall list active, upcoming trips filtered by mode (bus/train/metro) with live seat counts and load.</li>
+    <li><span class="req">REQ-6:</span> The system shall let a user select up to 6 available seats and place a transient hold.</li>
+    <li><span class="req">REQ-7:</span> Held seats shall expire after 5 minutes and revert to available if not paid.</li>
+    <li><span class="req">REQ-8:</span> The system shall prevent double-booking via a database constraint and a transactional availability re-check.</li>
+  </ul>
+
+  <h3>4.3 Wallet &amp; Payments</h3>
+  <h4>4.3.1 Description and Priority</h4>
+  <p><b>Priority: High.</b> Mock wallet (bKash/Rocket/Card) with balance and ledger.</p>
+  <h4>4.3.2 Functional Requirements</h4>
+  <ul>
+    <li><span class="req">REQ-9:</span> The system shall let a user top up the wallet via bKash, Rocket, or Card (simulated) and record the transaction.</li>
+    <li><span class="req">REQ-10:</span> On payment, the system shall verify <code>balance &ge; fare</code>, deduct atomically, and record a PURCHASE transaction.</li>
+    <li><span class="req">REQ-11:</span> The system shall display a chronological transaction ledger per user.</li>
+  </ul>
+
+  <h3>4.4 QR Ticketing &amp; Cancellation</h3>
+  <h4>4.4.1 Description and Priority</h4>
+  <p><b>Priority: High.</b> Issue QR tickets and support cancellation with refund.</p>
+  <h4>4.4.2 Functional Requirements</h4>
+  <ul>
+    <li><span class="req">REQ-12:</span> On confirmation, the system shall issue a QR-coded ticket encoding the booking reference, trip, and user.</li>
+    <li><span class="req">REQ-13:</span> The system shall let a user cancel a booking; confirmed tickets are refunded to the wallet automatically.</li>
+    <li><span class="req">REQ-14:</span> Cancellation shall release the associated seats back to available.</li>
+  </ul>
+
+  <h3>4.5 AI Transit Assistant</h3>
+  <h4>4.5.1 Description and Priority</h4>
+  <p><b>Priority: Medium.</b> Three AI features powered by Gemini, each with a heuristic fallback.</p>
+  <h4>4.5.2 Functional Requirements</h4>
+  <ul>
+    <li><span class="req">REQ-15:</span> The system shall forecast route demand from historical seat occupancy and advise off-peak alternatives and a suggested fare multiplier.</li>
+    <li><span class="req">REQ-16:</span> The system shall generate a multi-modal route plan (metro/train/bus) over the real network with estimated time and fare.</li>
+    <li><span class="req">REQ-17:</span> The system shall answer FAQs and booking-status queries via a conversational support bot grounded in the user's bookings.</li>
+    <li><span class="req">REQ-18:</span> If the Gemini API is unavailable, the system shall return heuristic results without failing.</li>
+  </ul>
+
+  <h3>4.6 Administration</h3>
+  <h4>4.6.1 Description and Priority</h4>
+  <p><b>Priority: Medium.</b> Operational control panel for admins only.</p>
+  <h4>4.6.2 Functional Requirements</h4>
+  <ul>
+    <li><span class="req">REQ-19:</span> The system shall restrict <code>/admin</code> to users with role ADMIN (server-side enforced).</li>
+    <li><span class="req">REQ-20:</span> Admins shall adjust a trip's fare multiplier and activate/pause trips.</li>
+    <li><span class="req">REQ-21:</span> Admins shall view system stats (users, tickets, revenue) and the full transaction ledger.</li>
+  </ul>
+  </div>
+
+  <!-- 5 -->
+  <div class="section">
+  <h2>5. Other Nonfunctional Requirements</h2>
+
+  <h3>5.1 Performance Requirements</h3>
+  <ul>
+    <li>Typical page reads (seat maps, listings) shall complete in under ~1 second on a broadband connection.</li>
+    <li>Database queries shall use indexes on hot paths (trip/seat/booking lookups).</li>
+    <li>AI responses depend on the external model; the UI shall remain responsive and show a loading state.</li>
+  </ul>
+
+  <h3>5.2 Safety Requirements</h3>
+  <ul>
+    <li>No real financial transactions occur; payments are simulated, preventing monetary loss.</li>
+    <li>Atomic transactions prevent inconsistent states (e.g., charged-but-not-booked).</li>
+  </ul>
+
+  <h3>5.3 Security Requirements</h3>
+  <ul>
+    <li>Passwords stored only as bcrypt hashes; sessions via signed JWT.</li>
+    <li>Server-side authorization on all mutating actions; admin actions re-check role.</li>
+    <li>Input validated with Zod; secrets kept in environment variables, never committed.</li>
+  </ul>
+
+  <h3>5.4 Software Quality Attributes</h3>
+  <table>
+    <tr><th>Attribute</th><th>Target</th></tr>
+    <tr><td>Reliability</td><td>Transactional booking; no double-booking; auto-expiry of holds.</td></tr>
+    <tr><td>Usability</td><td>Responsive, mobile-first; clear flows and error messages.</td></tr>
+    <tr><td>Maintainability</td><td>TypeScript end-to-end; modular App Router structure.</td></tr>
+    <tr><td>Portability/Scalability</td><td>SQLite &rarr; PostgreSQL by config; stateless server suits horizontal scaling.</td></tr>
+    <tr><td>Availability</td><td>AI heuristic fallback keeps features working without external dependencies.</td></tr>
+  </table>
+
+  <h3>5.5 Business Rules</h3>
+  <ul>
+    <li>A seat may be held by at most one booking at a time.</li>
+    <li>Only ADMIN users may modify schedules, fares, or view the global ledger.</li>
+    <li>Confirmed tickets are refundable to the wallet; pending holds simply expire/release.</li>
+    <li>Fare = <code>Route.baseFare &times; Trip.fareMultiplier &times; seatCount</code>.</li>
+  </ul>
+  </div>
+
+  <!-- 6 -->
+  <div class="section">
+  <h2>6. Other Requirements</h2>
+  <ul>
+    <li><b>Database:</b> relational schema of 7 entities (User, Route, Trip, Seat, Booking, Transaction, and enumerations).</li>
+    <li><b>Internationalization:</b> Bangla localization is a future enhancement (out of scope for v1.0).</li>
+    <li><b>Reuse:</b> the AI heuristic layer and Prisma schema are reusable across future modules.</li>
+  </ul>
+
+  <h2>Appendix A: Glossary</h2>
+  <table>
+    <tr><th>Term</th><th>Definition</th></tr>
+    <tr><td>Hold</td><td>A temporary 5-minute reservation of seats before payment.</td></tr>
+    <tr><td>Fare multiplier</td><td>A factor applied to base fare for peak pricing.</td></tr>
+    <tr><td>QR ticket</td><td>A QR-encoded payload proving a confirmed booking.</td></tr>
+    <tr><td>Server Action</td><td>A Next.js server-side function callable from the UI.</td></tr>
+    <tr><td>LLM</td><td>Large Language Model (Google Gemini) powering AI features.</td></tr>
+  </table>
+
+  <h2>Appendix B: Analysis Models</h2>
+  <p>The following UML models accompany this SRS (see <code>docs/UML-DIAGRAMS.md</code>):</p>
+  <ul>
+    <li>Use Case Diagram (whole system)</li>
+    <li>Sequence Diagrams — Book &amp; Pay for Ticket; AI Multi-Modal Route Planning</li>
+    <li>Communication Diagram — Cancel &amp; Refund</li>
+    <li>Activity Diagram — Book &amp; Pay for Ticket</li>
+    <li>Class Diagram (major classes, attributes, methods, relationships, multiplicities)</li>
+  </ul>
+
+  <h2>Appendix C: To Be Determined List</h2>
+  <ul>
+    <li>TBD-1: Real payment gateway integration (post-demo).</li>
+    <li>TBD-2: Real-time seat updates via WebSockets/polling.</li>
+    <li>TBD-3: Bangla language localization.</li>
+  </ul>
+  </div>
+
+</body>
+</html>
